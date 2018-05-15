@@ -71,7 +71,7 @@ function format(value, options) {
     return f.symbolOnLeft == symbolOnLeft && f.spaceBetweenAmountAndSymbol == spaceBetweenAmountAndSymbol
   })[0].format
 
-  return accounting.formatMoney(value, {
+  let toReturn = accounting.formatMoney(value, {
     symbol: isUndefined(options.symbol)
               ? currency.symbol
               : options.symbol,
@@ -91,7 +91,17 @@ function format(value, options) {
     format: ['string', 'object'].indexOf(typeof options.format) > -1
               ? options.format
               : format
-  })
+  });
+
+  let _decimal = isUndefined(options.decimal)
+    ? currency.decimalSeparator
+    : options.decimal;
+
+  let arrDec = toReturn.split(_decimal);
+  if (arrDec.length > 1) {
+    return `${arrDec[0]}${_decimal}<sup>${arrDec[1]}</sup>`;
+  }
+  return toReturn;
 }
 
 function findCurrency (currencyCode) {
