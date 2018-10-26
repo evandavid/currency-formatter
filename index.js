@@ -99,7 +99,7 @@ function format(value, options) {
 
   var arrDec = toReturn.split(_decimal);
   if (arrDec.length > 1) {
-    return `${arrDec[0]}${_decimal}<sup>${arrDec[1]}</sup>`;
+    return arrDec[0]+_decimal+'<sup>'+arrDec[1]+'</sup>';
   }
   return toReturn;
 }
