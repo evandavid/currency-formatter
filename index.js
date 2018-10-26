@@ -71,7 +71,7 @@ function format(value, options) {
     return f.symbolOnLeft == symbolOnLeft && f.spaceBetweenAmountAndSymbol == spaceBetweenAmountAndSymbol
   })[0].format
 
-  let toReturn = accounting.formatMoney(value, {
+  var toReturn = accounting.formatMoney(value, {
     symbol: isUndefined(options.symbol)
               ? currency.symbol
               : options.symbol,
@@ -93,11 +93,11 @@ function format(value, options) {
               : format
   });
 
-  let _decimal = isUndefined(options.decimal)
+  var _decimal = isUndefined(options.decimal)
     ? currency.decimalSeparator
     : options.decimal;
 
-  let arrDec = toReturn.split(_decimal);
+  var arrDec = toReturn.split(_decimal);
   if (arrDec.length > 1) {
     return `${arrDec[0]}${_decimal}<sup>${arrDec[1]}</sup>`;
   }
